@@ -1,0 +1,25 @@
+<h1 class='text-3xl font-bold'>Aldo's stores</h1>
+
+<%= turbo_stream_from 'stock_item' %>
+
+<div class='grid grid-cols-3 gap-4'>
+  <%= turbo_frame_tag 'stock_item_over_inventory_alerts', class: 'alerts-container' do %>
+  <% end %>
+  <%= turbo_frame_tag 'stock_item_low_stock_alerts', class: 'alerts-container' do %>
+  <% end %>
+  <%= turbo_frame_tag 'stock_item_out_of_stock_alerts', class: 'alerts-container' do %>
+  <% end %>
+</div>
+
+<div class='grid grid-cols-2 m-4 gap-4'>
+  <%- @stores.each do |store| %>
+    <div class='border-2 border-solid rounded-md border-indigo-200 p-3'>
+      <%= turbo_stream_from store %>
+      <h3 class='p-1'><%= store.name %></h3>
+
+      <%= turbo_frame_tag "inventory_store_#{store.id}", class: 'flex flex-col flex-grow' do %>
+        <span>Waiting for inventory...</span>
+      <% end %>
+    </div>
+  <% end %>
+</div>

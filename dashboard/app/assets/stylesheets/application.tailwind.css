@@ -1,0 +1,48 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .alerts-container {
+    @apply flex flex-col max-h-64 overflow-y-auto p-3;
+  }
+
+  .alert {
+    @apply w-full m-1 border rounded-md text-xs relative;
+    padding: 0.75rem 2rem 0.75rem 1rem;
+  }
+
+  .alert.alert-danger {
+    @apply bg-red-50 text-red-600;
+  }
+
+  .alert.alert-info {
+    @apply bg-blue-50 text-blue-600;
+  }
+
+  .alert.alert-warning {
+    @apply bg-yellow-50 text-yellow-600;
+  }
+
+  .alert .alert__title {
+    @apply block font-bold text-sm mb-1.5;
+  }
+
+  .alert .alert__close-icon {
+    @apply h-4 w-4 absolute right-4;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .alert .alert__close-icon.alert__close-icon-danger {
+    @apply fill-red-600;
+  }
+
+  .alert .alert__close-icon.alert__close-icon-info {
+    @apply fill-blue-600;
+  }
+
+  .alert .alert__close-icon.alert__close-icon-warning {
+    @apply fill-yellow-600;
+  }
+}

@@ -1,0 +1,22 @@
+<%= turbo_frame_tag "inventory_store_#{store.id}", class: "flex flex-col flex-grow" do %>
+  <div class='max-h-96 overflow-auto'>
+    <table class='border-collapse table-auto w-full text-sm'>
+      <thead>
+        <tr>
+        <th class='p-1 border border-r-0 border-slate-300 bg-slate-200 font-medium text-slate-400 text-left'>
+          Model
+        </th>
+        <th class='p-1 border border-l-0 border-slate-300 bg-slate-200 font-medium text-slate-400 text-right'>On Stock</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%- store_stock_items.each do |stock_item| %>
+          <tr class="<%= stock_item_row_background(stock_item.count_on_hand) %>">
+            <td class='p-1 border-l border-b border-slate-300'><%= stock_item.product.name %></td>
+            <td class='p-1 border-b border-r border-slate-300 text-right'><%= stock_item.count_on_hand %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+<% end %>

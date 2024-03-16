@@ -1,0 +1,11 @@
+<%- alert_messages.each do |alert_info| %>
+  <div class='alert <%= "alert-#{alert_info[:type]}" %>'>
+    <label class='alert__title'><%= alert_info[:title] %></label>
+    <span><%= alert_info[:message].html_safe %></span>
+    <i class='alert__close-icon <%= "alert__close-icon-#{alert_info[:type]}" %>'
+      data-controller='alerts'
+      data-action='click->alerts#close'>
+      <%= show_close_icon %>
+    </i>
+  </div>
+<% end %>
