@@ -8,7 +8,7 @@ class BaseNotifier
   OVER_INVENROTY_ALERT_TARGET = 'stock_item_over_inventory_alerts'
 
   def broadcast_alert(alert_messages, broadcast_target)
-    Turbo::StreamsChannel.broadcast_update_later_to(
+    Turbo::StreamsChannel.broadcast_update_to(
       'stock_item',
       target: broadcast_target,
       partial: '/stock_items/alert',

@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
 class OutOfStockNotifier < BaseNotifier
-  def nottify
+  def notify
     out_of_stock_alerts = build_alert_messages
+    return if out_of_stock_alerts.blank?
+
     broadcast_alert(out_of_stock_alerts, OUT_OF_STOCK_ALERT_TARGET)
   end
 
@@ -11,17 +13,17 @@ class OutOfStockNotifier < BaseNotifier
   ALERT_TYPE = 'danger'
 
   def build_alert_messages
-    out_of_stock_alerts = []
+    alert_messages = []
 
     StockItem.out_of_stock.each do |stock_item|
       count_on_hand = stock_item.count_on_hand
 
       next if count_on_hand.between?(10, 70)
 
-      out_of_stock_alerts << build_alert_message(stock_item, count_on_hand)
+      alert_messages << build_alert_message(stock_item, count_on_hand)
     end
 
-    out_of_stock_alerts
+    alert_messages
   end
 
   def build_alert_message(stock_item, count_on_hand)

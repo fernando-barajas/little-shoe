@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-class InventoryLowNotifier < BaseNotifier
-  def nottify
+class LowInventoryNotifier < BaseNotifier
+  def notify
     inventory_low_alerts = build_alert_messages
+    return if inventory_low_alerts.blank?
+
     broadcast_alert(inventory_low_alerts, INVENTORY_LOW_ALERT_TARGET)
   end
 
@@ -25,7 +27,6 @@ class InventoryLowNotifier < BaseNotifier
   end
 
   def build_alert_message(stock_item, count_on_hand)
-    transfer_from_store = store_name_with_enough_inventory(stock_item)
     alert_presenter(
       stock_item: stock_item,
       count_on_hand: count_on_hand,

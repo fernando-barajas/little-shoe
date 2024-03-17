@@ -3,9 +3,9 @@
 class InventoryManagerService
   class << self
     def call
-      OutOfStockNotifier.new.nottify
-      InventoryLowNotifier.new.nottify
-      OverInventoryNotifier.new.nottify
+      OutOfStockNotifier.new.notify
+      LowInventoryNotifier.new.notify
+      OverstockNotifier.new.notify
     end
   end
 end
