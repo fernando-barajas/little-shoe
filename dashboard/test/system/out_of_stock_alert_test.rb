@@ -1,0 +1,21 @@
+# frozen_string_literal: true
+
+require 'application_system_test_case'
+
+class OutOfStockAlertTest < ApplicationSystemTestCase
+  setup do
+    @centre_eaton = create(:store, name: 'Aldo Centre Eaton')
+    @product = create(:product)
+  end
+
+  test 'See out of stock alert in Stores dashboard' do
+    visit stores_url
+
+    create(:stock_item, store: @centre_eaton, product: @product, count_on_hand: 0)
+    sleep(1)
+    InventoryManagerService.call
+
+    sleep(2)
+    assert_selector 'label', text: 'Out of Stock'
+  end
+end
