@@ -1,0 +1,12 @@
+<div class='border-2 border-solid rounded-md border-indigo-200 p-3'>
+  <%= turbo_stream_from store %>
+  <h3 class='p-1'>
+    <%= link_to_if current_page?(stores_path), store.name, store_path(store), class: 'text-blue-600 visited:text-purple-600 underline underline-offset-2' do%>
+      <span class='font-bold'><%= store.name%></span>
+    <% end %>
+  </h3>
+
+  <%= turbo_frame_tag "inventory_store_#{store.id}", class: 'flex flex-col flex-grow' do %>
+    <span>Waiting for inventory...</span>
+  <% end %>
+</div>

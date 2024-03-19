@@ -1,0 +1,7 @@
+<h1 class='text-3xl font-bold'>
+  <%= link_to "Aldo's stores", stores_path, class: 'text-blue-600 visited:text-purple-600 underline underline-offset-2' %>
+</h1>
+
+<div class='m-5'>
+  <%= render '/shared/inventory_container', store: @store %>
+</div>
