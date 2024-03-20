@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class StockItem < ApplicationRecord
   belongs_to :store
   belongs_to :product
 
   after_commit :update_inventory_message
 
-  scope :by_product_id, ->(product_id) { where(product_id: product_id).order(count_on_hand: :desc) }
-  scope :out_of_stock, ->{ where(count_on_hand: 0) }
-  scope :inventory_low, ->{ where(count_on_hand: [1..10]) }
-  scope :overstock, ->{ where(count_on_hand: 99...Float::INFINITY) }
+  scope :by_product_id, ->(product_id) { where(product_id:).order(count_on_hand: :desc) }
+  scope :out_of_stock, -> { where(count_on_hand: 0) }
+  scope :inventory_low, -> { where(count_on_hand: [1..10]) }
+  scope :overstock, -> { where(count_on_hand: 99...Float::INFINITY) }
 
   def self.stock_item_with_enough_inventory(product_id)
     stock_item = by_product_id(product_id).first

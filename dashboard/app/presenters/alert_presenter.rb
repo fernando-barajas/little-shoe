@@ -20,7 +20,7 @@ class AlertPresenter
   def build_alert_info
     case alert_type
     when 'danger'
-      { type: alert_type, title: 'Out of Stock',  message: out_of_stock_message }
+      { type: alert_type, title: 'Out of Stock', message: out_of_stock_message }
     when 'warning'
       { type: alert_type, title: 'Low stock', message: low_inventory_message }
     when 'info'

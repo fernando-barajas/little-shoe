@@ -10,14 +10,14 @@ class InventoryMonitoringService
 
     def start
       Thread.new do
-        EM.run {
+        EM.run do
           ws = Faye::WebSocket::Client.new('ws://localhost:8080/')
 
           ws.on :message do |event|
             data = JSON.parse(event.data)
             broadcast(:inventory_update, data)
           end
-        }
+        end
       end
     end
   end
