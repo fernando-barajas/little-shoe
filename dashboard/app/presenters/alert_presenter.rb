@@ -29,7 +29,8 @@ class AlertPresenter
   end
 
   def out_of_stock_message
-    "<strong>#{product_name}</strong> from <strong>#{store_name}</strong> is out of stock#{stock_transfer_message}"
+    "<strong>#{product_name}</strong> from <strong>#{store_name}</strong>
+      is out of stock#{stock_transfer_message}"
   end
 
   def stock_transfer_message
@@ -39,10 +40,12 @@ class AlertPresenter
   end
 
   def low_inventory_message
-    "<strong>#{product_name}</strong> from <strong>#{store_name}</strong> is low on stock, there are #{stock_item_count_on_hand} pair of shoes for this model"
+    "<strong>#{product_name}</strong> from <strong>#{store_name}</strong>
+      is low on stock, there are #{stock_item_count_on_hand} pair of shoes for this model"
   end
 
   def over_inventory_message
-    "<strong>#{product_name}</strong> from <strong>#{store_name}</strong> is overstock, there are #{stock_item_count_on_hand} pair of shoes for this model"
+    "<strong>#{product_name}</strong> from <strong>#{store_name}</strong>
+      is overstock, there are #{stock_item_count_on_hand} pair of shoes for this model"
   end
 end

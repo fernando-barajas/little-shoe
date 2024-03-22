@@ -2,6 +2,10 @@
   <%= link_to "Aldo's stores", stores_path, class: 'text-blue-600 visited:text-purple-600 underline underline-offset-2' %>
 </h1>
 
+<%= turbo_stream_from 'stock_item' %>
+
+<%= render '/shared/alerts_container' %>
+
 <div class='m-5'>
   <%= render '/shared/inventory_container', store: @store %>
 </div>
