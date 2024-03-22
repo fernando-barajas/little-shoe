@@ -25,7 +25,7 @@ class StockItem < ApplicationRecord
     broadcast_replace_to(
       store,
       target: "inventory_store_#{store.id}",
-      partial: '/stores/inventory',
+      partial: '/shared/inventory',
       locals: { store: store, store_stock_items: store.stock_items.order(count_on_hand: :asc) }
     )
   end

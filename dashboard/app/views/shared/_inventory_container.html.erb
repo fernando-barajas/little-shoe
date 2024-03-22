@@ -7,6 +7,6 @@
   </h3>
 
   <%= turbo_frame_tag "inventory_store_#{store.id}", class: 'flex flex-col flex-grow' do %>
-    <span>Waiting for inventory...</span>
+    <%= render '/shared/inventory', store: store, store_stock_items: store.stock_items.order(count_on_hand: :asc) %>
   <% end %>
 </div>
